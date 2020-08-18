@@ -1,9 +1,13 @@
 package com.paveloff.instaclone.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -12,10 +16,18 @@ public class User {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private String email;
+	
 	private String username;
+	
 	private String password;
+	
 	private String role;
+	
+	@OneToMany(mappedBy = "owner")
+	private List<Post> posts;
+	
 	public int getId() {
 		return id;
 	}
@@ -24,16 +36,25 @@ public class User {
 		super();
 	}
 
-	public User(int id, String email, String username, String password, String role) {
-		this(email, username, password, role);
+	public User(int id, String email, String username, String password, String role, List<Post> posts) {
+		this(email, username, password, role, posts);
 		this.id = id;
 	}
 
+	public User(String email, String username, String password, String role, List<Post> posts) {
+		this.email = email;
+		this.username = username;
+		this.password = password;
+		this.role = role;
+		this.posts = posts;
+	}
+	
 	public User(String email, String username, String password, String role) {
 		this.email = email;
 		this.username = username;
 		this.password = password;
 		this.role = role;
+		this.posts = new ArrayList<>();
 	}
 
 	public void setId(int id) {
@@ -72,6 +93,14 @@ public class User {
 		this.role = role;
 	}
 	
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+
 	@Override
 	public String toString() {
 		return username + "(" + role + ")";

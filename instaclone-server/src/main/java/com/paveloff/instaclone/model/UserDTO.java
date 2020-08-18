@@ -1,19 +1,17 @@
 package com.paveloff.instaclone.model;
 
+import java.util.List;
+
 public class UserDTO {
 	
-	private String email;
 	private String username;
-	private String password;
+	private List<Post> posts;
 	
-	public String getEmail() {
-		return email;
+	public UserDTO(String username, List<Post> posts) {
+		this.username = username;
+		this.posts = posts;
 	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
+	
 	public String getUsername() {
 		return username;
 	}
@@ -22,12 +20,13 @@ public class UserDTO {
 		this.username = username;
 	}
 	
-	public String getPassword() {
-		return password;
+	public List<Post> getPosts() {
+		return posts;
 	}
 	
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
 	}
-
+	
 }
+
