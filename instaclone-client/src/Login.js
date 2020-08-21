@@ -6,9 +6,12 @@ import instalogo from "./static/instalogo.svg";
 import facebooklogo from "./static/facebooklogo.svg";
 
 import "./Login.css";
+import { login } from "./api";
+import { Redirect } from "react-router-dom";
 
-export default function Login() {
+export default function Login(props) {
   const [formData, setFormData] = useState({ username: "", password: "" });
+  const [loggedInSuccessfully, setLoggedInSuccessfully] = useState(false);
 
   function handleChange(id, value) {
     setFormData({ ...formData, [id]: value });
@@ -16,10 +19,18 @@ export default function Login() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(formData);
+    login(formData.username, formData.password).then((response) => {
+      if (response.isSuccessful) {
+        props.setLoggedIn(true);
+        localStorage.setItem("token", response.token.jwt);
+        setLoggedInSuccessfully(true);
+      }
+    });
   }
 
-  return (
+  return loggedInSuccessfully ? (
+    <Redirect to="/" />
+  ) : (
     <div className="Login">
       <div className="Login-box">
         <img className="Login-logo" src={instalogo} alt="Login-logo" />

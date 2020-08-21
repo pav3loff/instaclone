@@ -10,6 +10,8 @@
 
 .Navbar-logo-div {
   width: 50%;
+  display: flex;
+  flex-direction: row;
   text-align: start;
 }
 
@@ -18,9 +20,19 @@
   text-align: end;
 }
 
-.Navbar-logo {
-  margin: 15px 15px 5px 15px;
+.Navbar-insta-logo {
+  margin: 15px 15px 10px 15px;
   height: 28px;
+}
+
+.Navbar-insta-icon {
+  margin: 13px 15px 0px 15px;
+  height: 25px;
+}
+
+.Navbar-divider {
+  margin-top: 11px;
+  margin-bottom: 11px;
 }
 
 .Navbar-button-signin {
@@ -38,6 +50,13 @@
   background-color: #0095f6 !important;
 }
 
+.Navbar-iconbutton {
+  height: 40px !important;
+  width: 40px !important;
+  margin-top: 6px !important;
+  margin-right: 15px !important;
+}
+
 .Navbar-link-register {
   all: unset;
   margin-top: 8px;
@@ -51,4 +70,19 @@
 
 .Navbar-link-register:hover {
   cursor: pointer;
+}
+
+.Navbar-menu-item {
+  font-family: "Raleway" !important;
+  font-size: 14px !important;
+  align-items: flex-start;
+}
+
+.Navbar-menu-item-text {
+  margin-left: 10px;
+  padding-top: 3px;
+}
+
+.Navbar-menu-fa-icon {
+  color: #757575;
 }
