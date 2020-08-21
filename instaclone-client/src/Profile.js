@@ -1,41 +1,65 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+import { Button } from "@material-ui/core";
+import { getUserInfo } from "./api";
 
 import "./Profile.css";
-import { Button } from "@material-ui/core";
 
-export default function Profile(props) {
+export default function Profile() {
+  const [userInfo, setUserInfo] = useState({
+    username: "",
+    posts: [],
+    displayName: "",
+    description: "",
+    numOfPosts: 0,
+    numOfFollowers: 0,
+    numOfFollowing: 0,
+    profilePicture: {
+      id: null,
+      url: "",
+    },
+  });
+
+  useEffect(() => {
+    getUserInfo("paveloff", localStorage.getItem("token")).then((response) => {
+      if (response.isSucessful) {
+        setUserInfo(response.userInfo);
+      }
+    });
+  }, []);
+
   return (
     <div className="Profile">
       <div className="Profile-header">
         <img
           className="Profile-avatar"
-          src="https://earthsky.org/upl/2018/12/comet-wirtanen-Jack-Fusco-dec-2018-Anza-Borrego-desert-CA-e1544613895713.jpg"
+          src={userInfo.profilePicture.url}
           alt="Profile-avatar"
         />
         <div className="Profile-info">
           <div className="Profile-info-first-row">
-            <p className="Profile-info-username">paveloff</p>
+            <p className="Profile-info-username">{userInfo.username}</p>
             <Button className="Profile-info-button">Message</Button>
             <Button className="Profile-info-button">Add friend</Button>
           </div>
           <div className="Profile-info-other-row">
             <p className="Profile-info-text">
-              Posts: <strong>100</strong>
+              Posts: <strong>{userInfo.numOfPosts}</strong>
             </p>
             <p className="Profile-info-text">
-              Followers: <strong>200</strong>
+              Followers: <strong>{userInfo.numOfFollowers}</strong>
             </p>
             <p className="Profile-info-text">
-              Following: <strong>50</strong>
+              Following: <strong>{userInfo.numOfFollowing}</strong>
             </p>
           </div>
           <div className="Profile-info-other-row">
             <p className="Profile-info-text">
-              <strong>Mario Pavlic</strong>
+              <strong>{userInfo.displayName}</strong>
             </p>
           </div>
           <div className="Profile-info-last-row">
-            <p className="Profile-info-text">Full stack developer</p>
+            <p className="Profile-info-text">{userInfo.description}</p>
           </div>
         </div>
       </div>

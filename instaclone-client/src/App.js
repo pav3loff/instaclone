@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Navbar from "./Navbar";
 import Login from "./Login";
-
-import "./App.css";
 import { validateToken } from "./api";
 import Profile from "./Profile";
+
+import "./App.css";
 
 function App() {
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -34,7 +34,7 @@ function App() {
           <Route
             exact
             path="/profile"
-            render={(props) => <Profile {...props} setLoggedIn={setLoggedIn} />}
+            render={(props) => <Profile {...props} />}
           />
         </Switch>
       </Router>

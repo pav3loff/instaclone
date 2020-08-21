@@ -52,3 +52,34 @@ export async function validateToken(token) {
 
   return responseData;
 }
+
+export async function getUserInfo(username, token) {
+  var responseData = {
+    isSucessful: false,
+    userInfo: {},
+  };
+
+  await fetch("/user/" + username, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Invalid token!");
+      }
+    })
+    .then((data) => {
+      responseData = {
+        isSucessful: true,
+        userInfo: data,
+      };
+    })
+    .catch(() => {});
+
+  return responseData;
+}

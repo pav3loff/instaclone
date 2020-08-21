@@ -1,13 +1,13 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 
 import { Button } from "@material-ui/core";
 
 import instalogo from "./static/instalogo.svg";
 import facebooklogo from "./static/facebooklogo.svg";
+import { login } from "./api";
 
 import "./Login.css";
-import { login } from "./api";
-import { Redirect } from "react-router-dom";
 
 export default function Login(props) {
   const [formData, setFormData] = useState({ username: "", password: "" });
