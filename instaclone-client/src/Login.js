@@ -1,0 +1,74 @@
+import React, { useState } from "react";
+
+import { Button } from "@material-ui/core";
+
+import instalogo from "./static/instalogo.svg";
+import facebooklogo from "./static/facebooklogo.svg";
+
+import "./Login.css";
+
+export default function Login() {
+  const [formData, setFormData] = useState({ username: "", password: "" });
+
+  function handleChange(id, value) {
+    setFormData({ ...formData, [id]: value });
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log(formData);
+  }
+
+  return (
+    <div className="Login">
+      <div className="Login-box">
+        <img className="Login-logo" src={instalogo} alt="Login-logo" />
+        <form className="Login-form" onSubmit={(event) => handleSubmit(event)}>
+          <input
+            className="Login-input"
+            type="text"
+            id="username"
+            value={formData.username}
+            placeholder="Username or email"
+            onChange={(event) =>
+              handleChange(event.target.id, event.target.value)
+            }
+          />
+          <input
+            className="Login-input"
+            type="password"
+            id="password"
+            value={formData.password}
+            placeholder="Password"
+            onChange={(event) =>
+              handleChange(event.target.id, event.target.value)
+            }
+          />
+          <Button className="Login-button-application" type="submit">
+            Application
+          </Button>
+        </form>
+        <div className="Login-break">
+          <p className="Login-or">OR</p>
+          <a className="Login-link-withfacebook" href="/login">
+            <img
+              className="Login-link-withfacebook-icon"
+              src={facebooklogo}
+              alt="Login-link-withfacebook-icon"
+            />
+            <p className="Login-link-withfacebook-text">Log in via facebook</p>
+          </a>
+          <a className="Login-link-forgotpassword" href="/login">
+            Forgot your password?
+          </a>
+        </div>
+      </div>
+      <div className="Login-register-box">
+        <p className="Login-register-text">Dont' have an account?</p>
+        <a className="Login-register-link" href="/register">
+          Register
+        </a>
+      </div>
+    </div>
+  );
+}

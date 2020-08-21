@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Roboto:wght@700&display=swap");
+
+.Login {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Login-box {
+  margin-top: 15px;
+  background-color: white;
+  border: solid 1px #dbdbdb;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 405px;
+  width: 350px;
+}
+
+.Login-logo {
+  margin: 40px;
+  height: 50px;
+}
+
+.Login-form {
+  padding-left: 45px;
+  padding-right: 45px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Login-input {
+  margin-top: 10px;
+  padding: 10px;
+  font-family: "Raleway";
+  font-size: 12px;
+  background-color: #fafafa;
+  border: solid 1px #dbdbdb;
+  border-radius: 3px;
+}
+
+.Login-input:focus {
+  outline: none;
+  border: solid 1px #838383;
+  border-radius: 3px;
+}
+
+.Login-button-application {
+  margin-top: 15px !important;
+  text-transform: none !important;
+  font-family: "Raleway" !important;
+  font-size: 13px !important;
+  min-width: unset !important;
+  min-height: unset !important;
+  padding: 5px 10px !important;
+  border-radius: 5px !important;
+  color: white !important;
+  background-color: #0095f6 !important;
+}
+
+.Login-break {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
+.Login-or {
+  font-family: "Lato";
+  font-weight: bold;
+  font-size: 13px;
+  color: #8e8eab;
+}
+
+.Login-link-withfacebook {
+  all: unset;
+  margin-top: 25px !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.Login-link-withfacebook-icon {
+  height: 21px;
+}
+
+.Login-link-withfacebook-text {
+  margin-top: 3px;
+  margin-left: 10px;
+  font-family: "Raleway" !important;
+  font-size: 14px;
+  color: #385185;
+}
+
+.Login-link-forgotpassword {
+  all: unset;
+  margin-top: 20px !important;
+  font-family: "Raleway" !important;
+  font-size: 11px;
+  color: #385185;
+}
+
+.Login-link-withfacebook:hover {
+  cursor: pointer;
+}
+
+.Login-link-forgotpassword:hover {
+  cursor: pointer;
+}
+
+.Login-register-box {
+  margin-top: 15px;
+  display: inline-block;
+  background-color: white;
+  border: solid 1px #dbdbdb;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 65px;
+  width: 350px;
+}
+
+.Login-register-text {
+  margin-top: 24px;
+  margin-right: 2px;
+  font-family: "Raleway";
+  font-size: 13px;
+  color: #696969;
+}
+
+.Login-register-link {
+  all: unset;
+  margin-top: 24px;
+  margin-left: 2px;
+  font-family: "Raleway";
+  font-size: 13px;
+  color: #0095f6;
+}
+
+.Login-register-link:hover {
+  cursor: pointer;
+}
