@@ -6,6 +6,7 @@ import Login from "./Login";
 
 import "./App.css";
 import { validateToken } from "./api";
+import Profile from "./Profile";
 
 function App() {
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -29,6 +30,11 @@ function App() {
             exact
             path="/login"
             render={(props) => <Login {...props} setLoggedIn={setLoggedIn} />}
+          />
+          <Route
+            exact
+            path="/profile"
+            render={(props) => <Profile {...props} setLoggedIn={setLoggedIn} />}
           />
         </Switch>
       </Router>

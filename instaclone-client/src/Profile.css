@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
+
+.Profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Profile-header {
+  display: flex;
+  flex-direction: row;
+}
+
+.Profile-avatar {
+  padding: 60px;
+  border-radius: 50%;
+  width: 150px;
+}
+
+.Profile-info {
+  display: flex;
+  flex-direction: column;
+  padding: 65px 60px 0px 40px;
+}
+
+.Profile-info-first-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.Profile-info-other-row {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.Profile-info-last-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.Profile-info-username {
+  margin-right: 20px;
+  font-family: "Quicksand";
+  font-size: 30px;
+}
+
+.Profile-info-button {
+  margin-right: 10px !important;
+  text-transform: none !important;
+  font-family: "Raleway" !important;
+  font-size: 13px !important;
+  min-width: unset !important;
+  min-height: unset !important;
+  padding: 5px 10px !important;
+  color: rgb(54, 54, 54) !important;
+  border: solid 1px lightgray !important;
+  border-radius: 5px !important;
+}
+
+.Profile-info-text {
+  margin-right: 20px;
+  font-family: "Quicksand";
+}

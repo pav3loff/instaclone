@@ -2,6 +2,7 @@
 
 .Navbar-header {
   object-fit: contain;
+  position: static;
   background-color: white;
   border-bottom: 1px solid lightgray;
   display: flex;
