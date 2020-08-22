@@ -135,7 +135,9 @@ export default function Navbar(props) {
       )}
 
       {lastAction === "login" && <Redirect to="/login" />}
-      {lastAction === "profile" && <Redirect to="/profile" />}
+      {lastAction === "profile" && (
+        <Redirect to={"/" + localStorage.getItem("loggedUserUsername")} />
+      )}
       {lastAction === "logout" && <Redirect to="/" />}
     </div>
   );

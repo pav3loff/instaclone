@@ -1,10 +1,13 @@
 package com.paveloff.instaclone.services;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.paveloff.instaclone.model.CompactPost;
 import com.paveloff.instaclone.model.Media;
 import com.paveloff.instaclone.model.Post;
 import com.paveloff.instaclone.model.PostDTO;
@@ -48,6 +51,26 @@ public class PostServiceImpl implements PostService {
 		
 		if(optionalPost.isPresent()) {
 			return optionalPost.get();
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public List<CompactPost> getCompactPostsByUsername(String username) {
+		Optional<User> optionalUser = userRepository.findByUsername(username);
+		
+		if(optionalUser.isPresent()) {
+			User user = optionalUser.get();
+			
+			List<Post> posts = user.getPosts();
+			List<CompactPost> compactPosts = new ArrayList<CompactPost>();
+			
+			for(Post post : posts) {
+				compactPosts.add(new CompactPost(post.getId(), post.getMedia()));
+			}
+			
+			return compactPosts;
 		} else {
 			return null;
 		}

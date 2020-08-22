@@ -1,0 +1,19 @@
+.NonExistingPage {
+  margin-top: 70px;
+  text-align: center;
+}
+
+.NonExistingPage-paragraph {
+  margin-top: 25px;
+  font-family: "Quicksand";
+  font-weight: bold;
+}
+
+.NonExistingPage-link {
+  text-decoration: none;
+  color: #385185;
+}
+
+.NonExistingPage-link:active {
+  color: #385185;
+}

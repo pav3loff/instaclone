@@ -23,6 +23,7 @@ export default function Login(props) {
       if (response.isSuccessful) {
         props.setLoggedIn(true);
         localStorage.setItem("token", response.token.jwt);
+        localStorage.setItem("loggedUserUsername", formData.username);
         setLoggedInSuccessfully(true);
       }
     });

@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 
 import { Button } from "@material-ui/core";
-import { getUserInfo } from "./api";
+
+import NonExistingPage from "./NonExistingPage";
+import { getUserInfo, getUserCompactPosts } from "./api";
 
 import "./Profile.css";
+import CompactPost from "./CompactPost";
 
-export default function Profile() {
+export default function Profile(props) {
   const [userInfo, setUserInfo] = useState({
     username: "",
     posts: [],
@@ -19,16 +22,34 @@ export default function Profile() {
       url: "",
     },
   });
+  const [userDoesNotExist, setUserDoesNotExist] = useState(false);
+  const [compactPosts, setCompactPosts] = useState([]);
 
   useEffect(() => {
-    getUserInfo("paveloff", localStorage.getItem("token")).then((response) => {
+    var username = props.location.pathname.substr(1); // pathname = /username
+    getUserInfo(username, localStorage.getItem("token")).then((response) => {
       if (response.isSucessful) {
         setUserInfo(response.userInfo);
+      } else {
+        setUserDoesNotExist(true);
       }
     });
-  }, []);
+  }, [props.location.pathname]);
 
-  return (
+  useEffect(() => {
+    var username = props.location.pathname.substr(1);
+    getUserCompactPosts(username, localStorage.getItem("token")).then(
+      (response) => {
+        if (response.isSucessful) {
+          setCompactPosts(response.compactPosts);
+        }
+      }
+    );
+  }, [props.location.pathname]);
+
+  return userDoesNotExist ? (
+    <NonExistingPage />
+  ) : (
     <div className="Profile">
       <div className="Profile-header">
         <img
@@ -63,7 +84,14 @@ export default function Profile() {
           </div>
         </div>
       </div>
-      <hr />
+      <div className="Profile-posts">
+        <div className="Profile-posts-grid">
+          {compactPosts.map((compactPost) => (
+            <CompactPost key={compactPost.id} {...compactPost} />
+          ))}
+        </div>
+      </div>
+      <div className="Profile-footer"></div>
     </div>
   );
 }
