@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 
 import { Button } from "@material-ui/core";
 
+import CompactPost from "./CompactPost";
 import NonExistingPage from "./NonExistingPage";
 import { getUserInfo, getUserCompactPosts } from "./api";
 
 import "./Profile.css";
-import CompactPost from "./CompactPost";
 
 export default function Profile(props) {
   const [userInfo, setUserInfo] = useState({

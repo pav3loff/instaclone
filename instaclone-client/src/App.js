@@ -8,7 +8,7 @@ import Profile from "./Profile";
 
 import "./App.css";
 
-function App() {
+export default function App() {
   const [isLoggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -41,5 +41,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
