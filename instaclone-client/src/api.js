@@ -114,3 +114,35 @@ export async function getUserCompactPosts(username, token) {
 
   return responseData;
 }
+
+export async function getLoggedUserUsername(token) {
+  var responseData = {
+    isSuccessful: false,
+    username: "",
+  };
+
+  await fetch("/extract_username_from_jwt", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+    body: JSON.stringify({ jwt: token }),
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Invalid token!");
+      }
+    })
+    .then((data) => {
+      responseData = {
+        isSuccessful: true,
+        username: data.username,
+      };
+    })
+    .catch(() => {});
+
+  return responseData;
+}

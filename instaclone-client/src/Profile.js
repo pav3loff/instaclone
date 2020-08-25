@@ -4,7 +4,7 @@ import { Button } from "@material-ui/core";
 
 import CompactPost from "./CompactPost";
 import NonExistingPage from "./NonExistingPage";
-import { getUserInfo, getUserCompactPosts } from "./api";
+import { getUserInfo, getUserCompactPosts, getLoggedUserUsername } from "./api";
 
 import "./Profile.css";
 
@@ -24,6 +24,7 @@ export default function Profile(props) {
   });
   const [userDoesNotExist, setUserDoesNotExist] = useState(false);
   const [compactPosts, setCompactPosts] = useState([]);
+  const [isOwner, setOwner] = useState(false);
 
   useEffect(() => {
     var username = props.location.pathname.substr(1); // pathname = /username
@@ -47,6 +48,17 @@ export default function Profile(props) {
     );
   }, [props.location.pathname]);
 
+  useEffect(() => {
+    if (userInfo.username !== "") {
+      getLoggedUserUsername(localStorage.getItem("token")).then((response) => {
+        if (response.username === userInfo.username) {
+          setOwner(true);
+        }
+      });
+    }
+    // compare result username with profile username
+  }, [userInfo]);
+
   return userDoesNotExist ? (
     <NonExistingPage />
   ) : (
@@ -60,8 +72,14 @@ export default function Profile(props) {
         <div className="Profile-info">
           <div className="Profile-info-first-row">
             <p className="Profile-info-username">{userInfo.username}</p>
-            <Button className="Profile-info-button">Message</Button>
-            <Button className="Profile-info-button">Add friend</Button>
+            {isOwner ? (
+              <Button className="Profile-info-button">Update profile</Button>
+            ) : (
+              <div className="Profile-info-first-row">
+                <Button className="Profile-info-button">Message</Button>
+                <Button className="Profile-info-button">Add friend</Button>
+              </div>
+            )}
           </div>
           <div className="Profile-info-other-row">
             <p className="Profile-info-text">

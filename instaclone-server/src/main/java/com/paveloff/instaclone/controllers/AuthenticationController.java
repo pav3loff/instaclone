@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.paveloff.instaclone.model.UsernameDTO;
 import com.paveloff.instaclone.services.AuthenticationRequest;
 import com.paveloff.instaclone.services.AuthenticationResponse;
 import com.paveloff.instaclone.services.UserDetailsServiceImpl;
@@ -60,6 +61,13 @@ public class AuthenticationController {
 		} else {
 			return ResponseEntity.badRequest().build();
 		}
+	}
+	
+	@PostMapping("/extract_username_from_jwt")
+	public ResponseEntity<UsernameDTO> extractUsernameFromJwt(@RequestBody AuthenticationResponse authenticationResponse) {
+		String username = jwtUtil.extractUsername(authenticationResponse.getJwt());
+		
+		return ResponseEntity.ok(new UsernameDTO(username));
 	}
 
 }
