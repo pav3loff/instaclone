@@ -105,7 +105,12 @@ export default function Profile(props) {
       <div className="Profile-posts">
         <div className="Profile-posts-grid">
           {compactPosts.map((compactPost) => (
-            <CompactPost key={compactPost.id} {...compactPost} />
+            <CompactPost
+              key={compactPost.id}
+              {...compactPost}
+              ownerUsername={userInfo.username}
+              profilePicture={userInfo.profilePicture}
+            />
           ))}
         </div>
       </div>
